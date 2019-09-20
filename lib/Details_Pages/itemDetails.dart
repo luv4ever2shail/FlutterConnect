@@ -1,4 +1,4 @@
-import 'package:connect/items.dart';
+import 'package:connect/DataModels/items.dart';
 import 'package:flutter/material.dart';
 
 class ItemDetail extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:connect/homepage.dart';
+import 'package:connect/homePage.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
