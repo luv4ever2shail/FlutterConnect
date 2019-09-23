@@ -4,11 +4,11 @@
 
 import 'dart:convert';
 
-Items itemsFromJson(String str) => Items.fromJson(json.decode(str));
+Item itemsFromJson(String str) => Item.fromJson(json.decode(str));
 
-String itemsToJson(Items data) => json.encode(data.toJson());
+String itemsToJson(Item data) => json.encode(data.toJson());
 
-class Items {
+class Item {
   String itemNumber;
   String description;
   String familyCode;
@@ -21,7 +21,7 @@ class Items {
   String material;
   String fullSearch;
 
-  Items({
+  Item({
     this.itemNumber,
     this.description,
     this.familyCode,
@@ -35,7 +35,7 @@ class Items {
     this.fullSearch,
   });
 
-  factory Items.fromJson(Map<String, dynamic> json) => new Items(
+  factory Item.fromJson(Map<String, dynamic> json) => new Item(
         itemNumber: json["ItemNumber"],
         description: json["Description"],
         familyCode: json["FamilyCode"],

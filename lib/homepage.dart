@@ -1,5 +1,6 @@
-import 'package:connect/Modules/itemspage.dart';
-import 'package:connect/Modules/jobspage.dart';
+import 'package:ConnectApp/Modules/itemspage.dart';
+import 'package:ConnectApp/Modules/jobspage.dart';
+import 'package:ConnectApp/Modules/workorderpage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -107,7 +108,12 @@ class _HomePageState extends State<HomePage> {
                         child: InkWell(
                           splashColor: Colors.orangeAccent,
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => WorkOrderPage()));
+                          },
                           child: Center(
                             child: Text(
                               'Work Order',

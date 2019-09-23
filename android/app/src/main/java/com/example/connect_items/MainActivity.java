@@ -1,4 +1,4 @@
-package com.example.connect_items;
+package com.spm.connect_items;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

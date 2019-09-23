@@ -1,8 +1,8 @@
-import 'package:connect/DataModels/items.dart';
+import 'package:ConnectApp/DataModels/items.dart';
 import 'package:flutter/material.dart';
 
 class ItemDetail extends StatelessWidget {
-  final Items item;
+  final Item item;
 
   ItemDetail({this.item});
   bodyWidget(BuildContext context) => Stack(

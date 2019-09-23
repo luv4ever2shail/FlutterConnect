@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:connect/DataModels/items.dart';
-import 'package:connect/Details_Pages/itemDetails.dart';
+import 'package:ConnectApp/DataModels/items.dart';
+import 'package:ConnectApp/Details_Pages/itemDetails.dart';
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 
 class ItemsPage extends StatefulWidget {
   @override
@@ -17,38 +16,21 @@ class ItemsPage extends StatefulWidget {
 }
 
 class ItemsPageState extends State<ItemsPage> {
-  List<Items> posts = List<Items>();
-  List<Items> filteredWordsList = List<Items>();
+  List<Item> posts = List<Item>();
+  List<Item> filteredWordsList = List<Item>();
   FocusNode _focusNode;
   TextEditingController _textFieldController = new TextEditingController();
   bool isSearching = false;
   ScrollController _rrectController;
 
-  Items items;
+  Item items;
   @override
   void initState() {
-    // getdData();
-    load();
+    getdData();
     super.initState();
     isSearching = false;
     _focusNode = new FocusNode();
     _rrectController = new ScrollController();
-  }
-
-  load() async {
-    String url = "https://spmconnect.localtunnel.me/api/items";
-    var res = await http.get(url);
-    if (res.statusCode == HttpStatus.ok) {
-      List data = json.decode(res.body);
-      for (var i = 0; i < data.length; i++) {
-        posts.add(Items.fromJson(data[i]));
-      }
-      print(posts[0].itemNumber);
-      setState(() {
-        filteredWordsList = posts;
-      });
-      return posts;
-    }
   }
 
   @override
@@ -67,7 +49,7 @@ class ItemsPageState extends State<ItemsPage> {
       var jsonString = await response.transform(utf8.decoder).join();
       List data = json.decode(jsonString);
       for (var i = 0; i < data.length; i++) {
-        posts.add(Items.fromJson(data[i]));
+        posts.add(Item.fromJson(data[i]));
       }
       print(posts[0].itemNumber);
       setState(() {

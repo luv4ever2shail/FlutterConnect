@@ -1,21 +1,21 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:ConnectApp/DataModels/jobs.dart';
-import 'package:ConnectApp/Details_Pages/jobDetails.dart';
+import 'package:ConnectApp/DataModels/workorder.dart';
+import 'package:ConnectApp/Details_Pages/workorderdetails.dart';
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class JobsPage extends StatefulWidget {
+class WorkOrderPage extends StatefulWidget {
   @override
-  JobsPageState createState() {
-    return new JobsPageState();
+  WorkOrderPageState createState() {
+    return new WorkOrderPageState();
   }
 }
 
-class JobsPageState extends State<JobsPage> {
-  List<Job> posts = List<Job>();
-  List<Job> filteredWordsList = List<Job>();
+class WorkOrderPageState extends State<WorkOrderPage> {
+  List<WorkOrder> posts = List<WorkOrder>();
+  List<WorkOrder> filteredWordsList = List<WorkOrder>();
   FocusNode _focusNode;
   TextEditingController _textFieldController = new TextEditingController();
   bool isSearching = false;
@@ -31,13 +31,13 @@ class JobsPageState extends State<JobsPage> {
 
   Future<List> getdData() async {
     var httpClient = new HttpClient();
-    var request = await httpClient.get("192.168.199.241", 8080, '/api/jobs');
+    var request = await httpClient.get("192.168.199.241", 8080, '/api/wo');
     var response = await request.close();
     if (response.statusCode == HttpStatus.ok) {
       var jsonString = await response.transform(utf8.decoder).join();
       List data = json.decode(jsonString);
       for (var i = 0; i < data.length; i++) {
-        posts.add(Job.fromJson(data[i]));
+        posts.add(WorkOrder.fromJson(data[i]));
       }
 
       //posts = json.decode(jsonString);
@@ -54,7 +54,7 @@ class JobsPageState extends State<JobsPage> {
   }
 
   Widget appBarTitle = new Text(
-    "SPM Connect Jobs",
+    "Work Orders",
   );
   Icon actionIcon = new Icon(
     Icons.search,
@@ -74,7 +74,7 @@ class JobsPageState extends State<JobsPage> {
         color: Colors.white,
       );
       this.appBarTitle = new Text(
-        "SPM Connect Jobs",
+        "Work Orders",
         style: new TextStyle(color: Colors.white),
       );
       isSearching = false;
@@ -97,7 +97,7 @@ class JobsPageState extends State<JobsPage> {
   Widget buildBar(BuildContext context) {
     return new AppBar(
       centerTitle: true,
-      backgroundColor: Colors.cyan,
+      backgroundColor: Colors.indigo,
       title: appBarTitle,
       actions: <Widget>[
         isSearching
@@ -174,8 +174,8 @@ class JobsPageState extends State<JobsPage> {
               labelTextBuilder: (double offset) {
                 final int currentItem = offset ~/ 100;
                 var letter = currentItem <= filteredWordsList.length - 1
-                    ? filteredWordsList[currentItem].jobNumber
-                    : filteredWordsList[currentItem].jobNumber;
+                    ? filteredWordsList[currentItem].workOrder
+                    : filteredWordsList[currentItem].workOrder;
                 return Text(
                   "$letter",
                   style: TextStyle(color: Colors.white),
@@ -192,21 +192,21 @@ class JobsPageState extends State<JobsPage> {
                     child: Material(
                       elevation: 4.0,
                       borderRadius: BorderRadius.circular(4.0),
-                      color: Colors.cyan[index % 9 * 100],
+                      color: Colors.indigo[index % 9 * 100],
                       child: Center(
                           child: ListTile(
                         // subtitle: Text(
                         //     '${filteredWordsList[index].jobNumber} - ${filteredWordsList[index].description}'),
                         title: Text(
-                          '${filteredWordsList[index].jobNumber} - ${filteredWordsList[index].description}',
+                          '${filteredWordsList[index].workOrder} - ${filteredWordsList[index].description}',
                           style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => JobDetail(
-                                        job: filteredWordsList[index],
+                                  builder: (context) => WorkOrderDetail(
+                                        wo: filteredWordsList[index],
                                       )));
                         },
                       )),

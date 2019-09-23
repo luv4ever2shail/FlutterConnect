@@ -4,11 +4,11 @@
 
 import 'dart:convert';
 
-Jobs itemsFromJson(String str) => Jobs.fromJson(json.decode(str));
+Job itemsFromJson(String str) => Job.fromJson(json.decode(str));
 
-String itemsToJson(Jobs data) => json.encode(data.toJson());
+String itemsToJson(Job data) => json.encode(data.toJson());
 
-class Jobs {
+class Job {
   String jobNumber;
   int estId;
   int estDoc;
@@ -21,7 +21,7 @@ class Jobs {
   String customerId;
   String fullSearch;
 
-  Jobs({
+  Job({
     this.jobNumber,
     this.estId,
     this.estDoc,
@@ -35,7 +35,7 @@ class Jobs {
     this.fullSearch,
   });
 
-  factory Jobs.fromJson(Map<String, dynamic> json) => new Jobs(
+  factory Job.fromJson(Map<String, dynamic> json) => new Job(
         jobNumber: json["Job"],
         estId: json["EstId"],
         estDoc: json["EstDoc"],

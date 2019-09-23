@@ -6,14 +6,14 @@ import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class JobsPage extends StatefulWidget {
+class PurchaseReqPage extends StatefulWidget {
   @override
-  JobsPageState createState() {
-    return new JobsPageState();
+  PurchaseReqPageState createState() {
+    return new PurchaseReqPageState();
   }
 }
 
-class JobsPageState extends State<JobsPage> {
+class PurchaseReqPageState extends State<PurchaseReqPage> {
   List<Job> posts = List<Job>();
   List<Job> filteredWordsList = List<Job>();
   FocusNode _focusNode;
